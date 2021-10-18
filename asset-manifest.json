@@ -1,0 +1,23 @@
+{
+  "files": {
+    "main.css": "/wa-react-2021-q4-capstone-project/static/css/main.8c8b27cf.chunk.css",
+    "main.js": "/wa-react-2021-q4-capstone-project/static/js/main.b416dfab.chunk.js",
+    "main.js.map": "/wa-react-2021-q4-capstone-project/static/js/main.b416dfab.chunk.js.map",
+    "runtime-main.js": "/wa-react-2021-q4-capstone-project/static/js/runtime-main.85847c23.js",
+    "runtime-main.js.map": "/wa-react-2021-q4-capstone-project/static/js/runtime-main.85847c23.js.map",
+    "static/js/2.de591681.chunk.js": "/wa-react-2021-q4-capstone-project/static/js/2.de591681.chunk.js",
+    "static/js/2.de591681.chunk.js.map": "/wa-react-2021-q4-capstone-project/static/js/2.de591681.chunk.js.map",
+    "static/js/3.431297ae.chunk.js": "/wa-react-2021-q4-capstone-project/static/js/3.431297ae.chunk.js",
+    "static/js/3.431297ae.chunk.js.map": "/wa-react-2021-q4-capstone-project/static/js/3.431297ae.chunk.js.map",
+    "index.html": "/wa-react-2021-q4-capstone-project/index.html",
+    "static/css/main.8c8b27cf.chunk.css.map": "/wa-react-2021-q4-capstone-project/static/css/main.8c8b27cf.chunk.css.map",
+    "static/js/2.de591681.chunk.js.LICENSE.txt": "/wa-react-2021-q4-capstone-project/static/js/2.de591681.chunk.js.LICENSE.txt",
+    "static/media/logo.6ce24c58.svg": "/wa-react-2021-q4-capstone-project/static/media/logo.6ce24c58.svg"
+  },
+  "entrypoints": [
+    "static/js/runtime-main.85847c23.js",
+    "static/js/2.de591681.chunk.js",
+    "static/css/main.8c8b27cf.chunk.css",
+    "static/js/main.b416dfab.chunk.js"
+  ]
+}

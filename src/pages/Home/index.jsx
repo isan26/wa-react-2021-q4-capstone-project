@@ -11,11 +11,17 @@ import Grid from 'components/Grid';
 import Product from 'components/Product';
 import Button from 'components/Button';
 
-import ProductCategoriesMock from 'mocks/en-us/product-categories.json';
-import FeaturedProductsMock from 'mocks/en-us/featured-products.json';
-
 const Home = () => {
     const featuredBanners = useFeaturedBanners();
+    const categories = useFetcher({
+        query: CATEGORY,
+        pageSize: 30,
+    })
+
+    const featuredProducts = useFetcher({
+        query: FEATURED_PRODUCTS,
+        pageSize: 16,
+    });
 
     return (
         <div>
@@ -23,17 +29,18 @@ const Home = () => {
                 {featuredBanners.isLoading === false && <Slider data={featuredBanners.data} />}
             </Section>
             <Section>
-                <Grid
-                    data={CategoriesToGridList(ProductCategoriesMock)}
+                {categories.isLoading === false && <Grid
+                    data={CategoriesToGridList(categories.data)}
                     columns={5}
-                />
+                />}
             </Section>
             <Section>
-                <Grid
-                    data={ProductsToGridList(FeaturedProductsMock)}
+                {featuredProducts.isLoading === false && <Grid
+                    data={ProductsToGridList(featuredProducts.data)}
                     columns={6}
                     CustomComponent={Product}
                 />
+                }
             </Section>
             <Section>
                 <Button>
@@ -45,10 +52,12 @@ const Home = () => {
         </div>
     )
 }
-const CategoriesToGridList = (data) => data.results.map(item => ({
-    url: item.data.main_image.url,
-    title: item.data.name
-}))
+const CategoriesToGridList = (data) => {
+    return data.results.map(item => ({
+        url: item.data.main_image.url,
+        title: item.data.name
+    }))
+}
 
 const ProductsToGridList = (data) => data.results.map(item => ({
     url: item.data.mainimage.url,

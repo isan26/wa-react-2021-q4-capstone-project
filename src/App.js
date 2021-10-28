@@ -7,8 +7,10 @@ import Cart from "./components/Cart";
 import Content from './containers/Content';
 import Footer from "./containers/Footer";
 
-import Home from "pages/Home";
-import Products from "pages/Products";
+import HomePage from "pages/Home";
+import ProductsPage from "pages/Products";
+import DetailPage from "pages/Detail";
+import SearchPage from "components/Search";
 
 function App() {
 
@@ -25,12 +27,10 @@ function App() {
         </Header>
         <Content>
           <Switch>
-            <Route path="/products">
-              <Products />
-            </Route>
-            <Route path="/">
-              <Home />
-            </Route>
+            <Route path="/products" component={ProductsPage} />
+            <Route path="/detail" component={DetailPage} />
+            <Route path="/search" component={SearchPage} />
+            <Route path={["/", "/home"]} component={HomePage} />
           </Switch>
         </Content>
         <Footer>

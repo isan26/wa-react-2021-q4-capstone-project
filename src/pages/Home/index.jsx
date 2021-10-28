@@ -1,4 +1,5 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 
 import Section from './containers/Section';
 import Slider from './components/Slider';
@@ -10,7 +11,7 @@ import BannersMock from 'mocks/en-us/featured-banners.json';
 import ProductCategoriesMock from 'mocks/en-us/product-categories.json';
 import FeaturedProductsMock from 'mocks/en-us/featured-products.json';
 
-const Home = ({ setPage }) => (
+const Home = () => (
     <div>
         <Section>
             <Slider data={BannersMock} />
@@ -29,7 +30,11 @@ const Home = ({ setPage }) => (
             />
         </Section>
         <Section>
-            <Button onClick={() => setPage('products')}>View all products</Button>
+            <Button>
+                <Link to="/products">
+                    View all products
+                </Link>
+            </Button>
         </Section>
     </div>
 )

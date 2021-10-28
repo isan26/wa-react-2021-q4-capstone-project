@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { BrowserRouter as Router, Route, Switch, Link } from "react-router-dom";
 import GlobalStyle from "./components/GlobalStyle";
 import Header from "./containers/Header";
 import Logo from "./components/Logo";
@@ -11,24 +11,32 @@ import Home from "pages/Home";
 import Products from "pages/Products";
 
 function App() {
-  const [page, setPage] = useState('home');
 
   return (
     <>
-
+      <Router>
         <GlobalStyle />
         <Header>
-          <Logo goHome={() => setPage("home")} />
+          <Link to="/">
+            <Logo />
+          </Link>
           <Search />
           <Cart />
         </Header>
         <Content>
-          {page === "home" && <Home setPage={setPage} />}
-          {page === "products" && <Products setPage={setPage} />}
+          <Switch>
+            <Route path="/products">
+              <Products />
+            </Route>
+            <Route path="/">
+              <Home />
+            </Route>
+          </Switch>
         </Content>
         <Footer>
           <p>Ecommerce created during Wizeline’s Academy React Bootcamp</p>
         </Footer>
+      </Router>
     </>);
 }
 

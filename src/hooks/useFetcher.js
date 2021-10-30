@@ -24,8 +24,6 @@ export function useFetcher({
             try {
                 setData({ data: {}, isLoading: true });
 
-                console.log(`${API_BASE_URL}/documents/search?ref=${apiRef}&q=${encodeURIComponent(query)}&lang=${lang}&pageSize=${pageSize}`);
-
                 const response = await fetch(
                     `${API_BASE_URL}/documents/search?ref=${apiRef}&q=${encodeURIComponent(query)}&lang=${lang}&pageSize=${pageSize}`,
                     { signal: controller.signal, }

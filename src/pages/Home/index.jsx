@@ -1,13 +1,14 @@
-import React, { useEffect } from 'react';
+import React , {useEffect} from 'react';
 import { Link } from 'react-router-dom';
 import { useFeaturedBanners } from 'hooks/useFeaturedBanners';
 import { useFetcher } from 'hooks/useFetcher';
 
-import { CATEGORY, PRODUCT, PRODUCT_SEARCH, FEATURED_PRODUCTS, PRODUCT_DETAIL } from 'constants/queries';
+import { CATEGORY, FEATURED_PRODUCTS} from 'constants/queries';
 
 import Section from './containers/Section';
 import Slider from './components/Slider';
 import Grid from 'components/Grid';
+import Category from 'components/Category'
 import Product from 'components/Product';
 import Button from 'components/Button';
 
@@ -23,6 +24,10 @@ const Home = () => {
         pageSize: 16,
     });
 
+    useEffect(() => {
+        console.log(categories);
+    }, [categories])
+
     return (
         <div>
             <Section>
@@ -32,6 +37,7 @@ const Home = () => {
                 {categories.isLoading === false && <Grid
                     data={CategoriesToGridList(categories.data)}
                     columns={5}
+                    CustomComponent={Category}
                 />}
             </Section>
             <Section>
@@ -55,7 +61,8 @@ const Home = () => {
 const CategoriesToGridList = (data) => {
     return data.results.map(item => ({
         url: item.data.main_image.url,
-        title: item.data.name
+        title: item.data.name,
+        all : {...item}
     }))
 }
 

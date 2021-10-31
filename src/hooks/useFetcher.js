@@ -5,7 +5,7 @@ import { useLatestAPI } from './useLatestsAPI';
 export function useFetcher({
     query,
     lang = 'en-us',
-    pageSize = 10,
+    pageSize
 }) {
     const { ref: apiRef, isLoading: isApiMetadataLoading } = useLatestAPI();
     const [data, setData] = useState(() => ({
@@ -25,7 +25,7 @@ export function useFetcher({
                 setData({ data: {}, isLoading: true });
 
                 const response = await fetch(
-                    `${API_BASE_URL}/documents/search?ref=${apiRef}&q=${encodeURIComponent(query)}&lang=${lang}&pageSize=${pageSize}`,
+                    `${API_BASE_URL}/documents/search?ref=${apiRef}&q=${encodeURIComponent(query)}&lang=${lang}${pageSize ? `&pageSize=${pageSize}` : ""}`,
                     { signal: controller.signal, }
                 );
                 const data = await response.json();

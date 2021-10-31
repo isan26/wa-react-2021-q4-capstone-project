@@ -24,6 +24,4 @@ const Container = styled.div`
    margin-bottom: 3rem
 `
 
-
-
-export default Image
+export default Image;

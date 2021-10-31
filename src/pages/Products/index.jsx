@@ -8,33 +8,36 @@ import Grid from 'components/Grid';
 import Product from 'components/Product';
 import Pagination from './components/Pagination';
 import Loading from 'components/Loading';
+import { useFetcher } from 'hooks/useFetcher';
+import { CATEGORY , PRODUCT} from 'constants/queries';
 
-import ProductCategoriesMock from 'mocks/en-us/product-categories.json';
-import ProductsMock from 'mocks/en-us/products.json';
 
 const Products = () => {
-    const [isLoading, setIsLoading] = useState(true);
     const [selectedCategories, setSelectedCategories] = useState([]);
-    const [products, setProducts] = useState([...ProductsMock.results]);
+    const [products, setProducts] = useState([]);
+
+    const categories = useFetcher({
+        query: CATEGORY,
+        pageSize: 30,
+    });
+
+    const productList = useFetcher({
+        query: PRODUCT,
+    });
 
 
     useEffect(() => {
-        const loadingInterval = setInterval(() => {
-            setIsLoading(false);
-        }, 2000);
-        return () => clearInterval(loadingInterval);
-    }, [])
+        if (productList.isLoading) return;
 
-    useEffect(() => {
         let products = [];
         if (selectedCategories.length > 0) {
-            products = ProductsMock.results.filter(product => selectedCategories.includes(product.data.category.id));
+            products = productList.data.results.filter(product => selectedCategories.includes(product.data.category.id));
         } else {
-            products = ProductsMock.results;
+            products = productList.data.results;
         }
 
         setProducts(products);
-    }, [selectedCategories])
+    }, [selectedCategories, productList])
 
     const handleCategoryClick = (category) => {
         if (selectedCategories.includes(category)) {
@@ -47,14 +50,15 @@ const Products = () => {
     return (
         <Layout>
             <SideBar >
-                {ProductCategoriesMock.results.map((category) => <Category
+                {categories && categories.isLoading === false && categories.data.results.map((category) => <Category
                     key={category.id}
                     category={category}
                     onClick={() => handleCategoryClick(category.id)}
                     isActive={selectedCategories.includes(category.id)}
                 />)}
             </SideBar>
-            {isLoading ? <Loading /> :
+            {productList?.isLoading ? 
+                <Loading /> :
                 <Content>
                     <Title />
                     <Grid
@@ -63,8 +67,7 @@ const Products = () => {
                         CustomComponent={Product}
                     />
                     {products.length ? <Pagination /> : null}
-                </Content>
-            }
+                </Content>}
         </Layout>
     )
 }

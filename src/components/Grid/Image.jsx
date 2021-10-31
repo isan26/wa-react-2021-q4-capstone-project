@@ -16,10 +16,10 @@ const Container = styled.div`
    background-image: url(${props => props.img});
    background-size: cover;
    background-position: center;
+   background-repeat: no-repeat;
    &:hover{
     transform: scale(1.5);
     z-index : 5;
-    font-size: 1rem;
    }
    margin-bottom: 3rem
 `

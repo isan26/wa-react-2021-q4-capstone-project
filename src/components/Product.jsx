@@ -1,8 +1,8 @@
 import Image from "components/Grid/Image";
 import ImageInfo from "components/Texts/ImageInfo";
 import React from "react";
-import Cart from "../Cart";
-import Button from "../Button";
+import Cart from "./Cart";
+import Button from "./Button";
 import styled from "styled-components";
 
 const Product = ({ title, url, category, price }) => (
@@ -27,7 +27,7 @@ const Section = styled.div`
 `;
 
 const Bottom = styled.div`
-  height: 20%;
+  height: 10%;
 `
 
 export default Product;

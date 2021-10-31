@@ -16,7 +16,6 @@ const Home = () => {
     const featuredBanners = useFeaturedBanners();
     const categories = useFetcher({
         query: CATEGORY,
-        pageSize: 30,
     })
 
     const featuredProducts = useFetcher({

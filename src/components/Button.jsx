@@ -10,6 +10,11 @@ const Button = styled.button`
     cursor: pointer;
     font-size: large;
     padding: 1em;
+    & > a {
+        text-decoration: none;
+        color: white;
+    }
+
 `
 
 export default Button;

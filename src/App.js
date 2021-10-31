@@ -23,7 +23,7 @@ function App() {
             <Logo />
           </Link>
           <Search />
-          <Cart />
+          <Cart style={{ width: "2rem", height: "2rem" }} />
         </Header>
         <Content>
           <Switch>

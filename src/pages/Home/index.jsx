@@ -1,4 +1,4 @@
-import React , {useEffect} from 'react';
+import React from 'react';
 import { Link } from 'react-router-dom';
 import { useFeaturedBanners } from 'hooks/useFeaturedBanners';
 import { useFetcher } from 'hooks/useFetcher';
@@ -24,10 +24,6 @@ const Home = () => {
         pageSize: 16,
     });
 
-    useEffect(() => {
-        console.log(categories);
-    }, [categories])
-
     return (
         <div>
             <Section>
@@ -45,8 +41,7 @@ const Home = () => {
                     data={ProductsToGridList(featuredProducts.data)}
                     columns={6}
                     CustomComponent={Product}
-                />
-                }
+                />}
             </Section>
             <Section>
                 <Button>
@@ -58,13 +53,11 @@ const Home = () => {
         </div>
     )
 }
-const CategoriesToGridList = (data) => {
-    return data.results.map(item => ({
+const CategoriesToGridList = (data) =>  data.results.map(item => ({
         url: item.data.main_image.url,
         title: item.data.name,
         all : {...item}
     }))
-}
 
 const ProductsToGridList = (data) => data.results.map(item => ({
     url: item.data.mainimage.url,

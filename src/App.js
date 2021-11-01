@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { BrowserRouter as Router, Route, Switch, Link } from "react-router-dom";
 import GlobalStyle from "./components/GlobalStyle";
 import Header from "./containers/Header";
 import Logo from "./components/Logo";
@@ -7,28 +7,36 @@ import Cart from "./components/Cart";
 import Content from './containers/Content';
 import Footer from "./containers/Footer";
 
-import Home from "pages/Home";
-import Products from "pages/Products";
+import HomePage from "pages/Home";
+import ProductsPage from "pages/Products";
+import DetailPage from "pages/Detail";
+import SearchPage from "components/Search";
 
 function App() {
-  const [page, setPage] = useState('home');
 
   return (
     <>
-
+      <Router>
         <GlobalStyle />
         <Header>
-          <Logo goHome={() => setPage("home")} />
+          <Link to="/">
+            <Logo />
+          </Link>
           <Search />
-          <Cart />
+          <Cart style={{ width: "2rem", height: "2rem" }} />
         </Header>
         <Content>
-          {page === "home" && <Home setPage={setPage} />}
-          {page === "products" && <Products setPage={setPage} />}
+          <Switch>
+            <Route path="/products" component={ProductsPage} />
+            <Route path="/detail" component={DetailPage} />
+            <Route path="/search" component={SearchPage} />
+            <Route path={["/", "/home"]} component={HomePage} />
+          </Switch>
         </Content>
         <Footer>
           <p>Ecommerce created during Wizeline’s Academy React Bootcamp</p>
         </Footer>
+      </Router>
     </>);
 }
 

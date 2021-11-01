@@ -2,12 +2,25 @@ import React from 'react'
 import Button from 'components/Button';
 import styled from 'styled-components';
 
-const Pagination = () => {
+const Pagination = ({page, setPage, totalPages}) => {
+
+const handleNext = () => {
+    if (page < totalPages-1) {
+        setPage(page + 1);
+    }
+}
+
+const handlePrev = () => {
+    if (page > 0) {
+        setPage(page - 1);
+    }
+}
+    
     return (
         <Container>
-            <Button>Prev</Button>
-            <p>Page 1 of 4</p>
-            <Button>Next</Button>
+            <Button onClick={handlePrev}>Prev</Button>
+            <p>Page {page+1} of {totalPages}</p>
+            <Button onClick={handleNext} >Next</Button>
         </Container>
     )
 }
@@ -15,7 +28,7 @@ const Pagination = () => {
 
 const Container = styled.div`
     text-align: center;
-    padding: 4rem;
+    padding: 18rem;
     & > p { 
         display: inline-block;
         margin: 1rem; 
